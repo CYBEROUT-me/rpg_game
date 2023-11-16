@@ -1,0 +1,3 @@
+C:/Users/yukhn/CLionProjects/rpg/cmake-build-debug/CMakeFiles/rpg.dir
+C:/Users/yukhn/CLionProjects/rpg/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/yukhn/CLionProjects/rpg/cmake-build-debug/CMakeFiles/rebuild_cache.dir
