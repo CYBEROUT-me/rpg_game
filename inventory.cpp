@@ -5,10 +5,12 @@ Inventory::Inventory(string n, int d, int bl, string t) : name(n), damage(d), bl
         enum bonus
         {
             NOTHING,
-            KUVALDA
+            KUVALDA,
+            VAMPIRIC_SWORD
         };
         int b;
         if(name == "KUVALDA") b = KUVALDA;
+        else if(name == "VAMPIRIC_SWORD") b = VAMPIRIC_SWORD;
         else if(name == "NOTHING") b = NOTHING;
         switch(b)
         {
@@ -20,6 +22,14 @@ Inventory::Inventory(string n, int d, int bl, string t) : name(n), damage(d), bl
             case KUVALDA:
             {
                 damage = 3;
+                break;
+            }
+            case VAMPIRIC_SWORD:
+            {
+                Inventory::
+                damage = 4;
+                buffs["VAMPIRISM"] = numeric_limits<int>::max();
+                buffs["BREAK"] = 3;
                 break;
             }
         };
@@ -60,4 +70,13 @@ string Inventory::Name(){
 }
 int Inventory::BLOCK(){
     return blockdmg;
+}
+unordered_map<string, int> Inventory::getBuffs(){
+    return buffs;
+}
+void Inventory::change(std::string key) {
+    buffs[key] -= 1;
+    if(buffs[key] <= 0){
+        buffs.erase(key);
+    }
 }

@@ -7,7 +7,8 @@ using namespace std;
 class Weapon : public Inventory{
 private:
     string name;
-    double damage;
+    int damage;
+    int chance_to_broke;
 public:
     Weapon(string weapon_name);
 };

@@ -73,6 +73,12 @@ build CMakeFiles/rpg.dir/inventory.cpp.obj: CXX_COMPILER__rpg_Debug C$:/Users/yu
   OBJECT_DIR = CMakeFiles\rpg.dir
   OBJECT_FILE_DIR = CMakeFiles\rpg.dir
 
+build CMakeFiles/rpg.dir/Person.cpp.obj: CXX_COMPILER__rpg_Debug C$:/Users/yukhn/CLionProjects/rpg/Person.cpp || cmake_object_order_depends_target_rpg
+  DEP_FILE = CMakeFiles\rpg.dir\Person.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\rpg.dir
+  OBJECT_FILE_DIR = CMakeFiles\rpg.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target rpg
@@ -81,7 +87,7 @@ build CMakeFiles/rpg.dir/inventory.cpp.obj: CXX_COMPILER__rpg_Debug C$:/Users/yu
 #############################################
 # Link the executable rpg.exe
 
-build rpg.exe: CXX_EXECUTABLE_LINKER__rpg_Debug CMakeFiles/rpg.dir/main.cpp.obj CMakeFiles/rpg.dir/weapon.cpp.obj CMakeFiles/rpg.dir/armour.cpp.obj CMakeFiles/rpg.dir/inventory.cpp.obj
+build rpg.exe: CXX_EXECUTABLE_LINKER__rpg_Debug CMakeFiles/rpg.dir/main.cpp.obj CMakeFiles/rpg.dir/weapon.cpp.obj CMakeFiles/rpg.dir/armour.cpp.obj CMakeFiles/rpg.dir/inventory.cpp.obj CMakeFiles/rpg.dir/Person.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\rpg.dir
