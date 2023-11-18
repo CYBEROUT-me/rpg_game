@@ -8,6 +8,7 @@
 #include "inventory.h"
 #include <algorithm>
 #include <limits>
+#include <algorithm>
 
 using namespace std;
 
@@ -18,8 +19,10 @@ protected:
     int max_health;
     int damage;
     Inventory* main_weapon;
+    int main_weapon_pos;
     Inventory* main_armour;
-    vector<Inventory*> inv;
+    int main_armour_pos;
+    unordered_map<int, Inventory*> inv;
     unordered_map<string, int> effects;
 public:
     Person(string p_race, int p_health, int p_damage);

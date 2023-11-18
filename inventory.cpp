@@ -74,9 +74,11 @@ int Inventory::BLOCK(){
 unordered_map<string, int> Inventory::getBuffs(){
     return buffs;
 }
-void Inventory::change(std::string key) {
+int Inventory::change(std::string key) {
     buffs[key] -= 1;
     if(buffs[key] <= 0){
         buffs.erase(key);
+        return 1;
     }
+    return 0;
 }

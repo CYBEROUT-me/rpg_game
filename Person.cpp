@@ -16,14 +16,19 @@ double Person::getHealth(){
     return health;
 }
 void Person::giveItem(Inventory &item){
-    inv.push_back(&item);
+    for(int i = 0; i < 32; i++){
+        if(inv.find(i) == inv.end()){
+            inv[i] = &item;
+        }
+    }
+    //inv.push_back(&item);
 }
 void Person::printINV(){
     cout << "COUNT OF ITEMS: " << inv.size() << endl;
     int count = 1;
     for(const auto& item : inv){
-        cout << count << "|: " << "NAME: " << item->Name() << " TYPE: " << item->getType() <<
-             " DAMAGE: " << item->Damage() << endl;
+        cout << count << "|: " << "NAME: " << item.second->Name() << " TYPE: " << item.second->getType() <<
+             " DAMAGE: " << item.second->Damage() << endl;
         count++;
     }
 }
@@ -31,12 +36,14 @@ void Person::choose_item(int n){
     string item_type = inv[n-1]->getType();
     if(item_type == "WEAPON"){
         main_weapon = inv[n-1];
+        main_weapon_pos = n-1;
         for(auto item : main_weapon->getBuffs()){
             getEffects(item.first, numeric_limits<int>::max());
         }
     }
     else if(item_type == "ARMOUR"){
         main_armour = inv[n-1];
+        main_armour_pos = n-1;
     }
 }
 int Person::attack(Person& target){
@@ -87,7 +94,17 @@ void Person::yourTurn(Person &target){
         }
         auto it = main_weapon->getBuffs().find("BREAK");
         if(it != main_weapon->getBuffs().end()){
-            main_weapon->change("BREAK");
+            if (main_weapon->change("BREAK") == 1){
+                inv.erase(main_weapon_pos);
+                int found = 0;
+                for(auto item : inv){
+                    if(item.second->Name() == main_weapon->Name()){
+                        main_weapon = item.second;
+                        found = 1;
+                    }
+                }
+                if(found == 0) main_weapon = nullptr;
+            }
         }
     }
 }
