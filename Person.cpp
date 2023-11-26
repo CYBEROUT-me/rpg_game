@@ -19,9 +19,9 @@ void Person::giveItem(Inventory &item){
     for(int i = 0; i < 32; i++){
         if(inv.find(i) == inv.end()){
             inv[i] = &item;
+            break;
         }
     }
-    //inv.push_back(&item);
 }
 void Person::printINV(){
     cout << "COUNT OF ITEMS: " << inv.size() << endl;
@@ -47,12 +47,18 @@ void Person::choose_item(int n){
     }
 }
 int Person::attack(Person& target){
-    int dmg = (damage + main_weapon->Damage());
+    int dmg = damage;
+    if(main_weapon != nullptr){
+        dmg += main_weapon->Damage();
+    }
     dmg = dmg + rand() % int(-0.2*(dmg));
     return target.loseHP(dmg);
 }
 int Person::loseHP(int income_damage){
-    int recievedDamage = income_damage - main_armour->BLOCK();
+    int recievedDamage = income_damage;
+    if(main_armour != nullptr){
+        recievedDamage - main_armour->BLOCK();
+    }
     if(recievedDamage < 0) recievedDamage = 0;
     health -= recievedDamage;
     if(health < 0){
@@ -92,18 +98,19 @@ void Person::yourTurn(Person &target){
         if(find(effects_list.begin(), effects_list.end(), "VAMPIRISM") != effects_list.end() && damaged_HP > 0){
             restoreHP(0.2*damaged_HP);
         }
-        auto it = main_weapon->getBuffs().find("BREAK");
-        if(it != main_weapon->getBuffs().end()){
-            if (main_weapon->change("BREAK") == 1){
-                inv.erase(main_weapon_pos);
-                int found = 0;
-                for(auto item : inv){
-                    if(item.second->Name() == main_weapon->Name()){
-                        main_weapon = item.second;
-                        found = 1;
+        if(main_weapon != nullptr){
+            if(main_weapon->getBuffs().find("BREAK") != main_weapon->getBuffs().end()){
+                if (main_weapon->change("BREAK") == 1){
+                    inv.erase(main_weapon_pos);
+                    int found = 0;
+                    for(auto item : inv){
+                        if(item.second->Name() == main_weapon->Name()){
+                            main_weapon = item.second;
+                            found = 1;
+                        }
                     }
+                    if(found == 0) main_weapon = nullptr;
                 }
-                if(found == 0) main_weapon = nullptr;
             }
         }
     }

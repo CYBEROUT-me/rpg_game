@@ -28,6 +28,5 @@ public:
     virtual int BLOCK();
     virtual unordered_map<string, int> getBuffs();
     virtual int change(string key);
-    virtual void deleteItem()
 };
 #endif // _INV_

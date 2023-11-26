@@ -18,9 +18,9 @@ protected:
     int health;
     int max_health;
     int damage;
-    Inventory* main_weapon;
+    Inventory* main_weapon = nullptr;
     int main_weapon_pos;
-    Inventory* main_armour;
+    Inventory* main_armour = nullptr;
     int main_armour_pos;
     unordered_map<int, Inventory*> inv;
     unordered_map<string, int> effects;
