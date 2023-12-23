@@ -1,3 +1,3 @@
 #include "weapon.h"
 
-Weapon::Weapon(string n) : Inventory(n, 0, -1, "WEAPON"){}
+Weapon::Weapon(string n) : Item(n, 0, -1, "WEAPON"){}

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Inventory{
+class Item{
 private:
     string name;
     int damage;
@@ -20,8 +20,8 @@ private:
     string type;
     unordered_map<string, int> buffs;
 public:
-    Inventory(string n, int d, int bl, string t);
-    virtual ~Inventory();
+    Item(string n, int d, int bl, string t);
+    virtual ~Item();
     virtual string getType();
     virtual int Damage();
     virtual string Name();

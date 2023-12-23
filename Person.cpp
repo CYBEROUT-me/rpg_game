@@ -15,7 +15,7 @@ bool Person::isAlive() {
 double Person::getHealth(){
     return health;
 }
-void Person::giveItem(Inventory &item){
+void Person::giveItem(Item &item){
     for(int i = 0; i < 32; i++){
         if(inv.find(i) == inv.end()){
             inv[i] = &item;
@@ -46,13 +46,13 @@ void Person::choose_item(int n){
         main_armour_pos = n-1;
     }
 }
-int Person::attack(Person& target){
+int Person::attack(Person* target){
     int dmg = damage;
     if(main_weapon != nullptr){
         dmg += main_weapon->Damage();
     }
     dmg = dmg + rand() % int(-0.2*(dmg));
-    return target.loseHP(dmg);
+    return target->loseHP(dmg);
 }
 int Person::loseHP(int income_damage){
     int recievedDamage = income_damage;
@@ -85,7 +85,7 @@ vector<string> Person::checkEffect(){
     }
     return effects_list;
 }
-void Person::yourTurn(Person &target){
+void Person::yourTurn(Person* target){
     vector<string> effects_list = checkEffect();
     if(find(effects_list.begin(), effects_list.end(), "BLEEDING") != effects_list.end()){
         loseHP(4);

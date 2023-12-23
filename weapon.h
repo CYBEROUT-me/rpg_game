@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
-#include "inventory.h"
+#include "item.h"
 
 using namespace std;
 
-class Weapon : public Inventory{
+class Weapon : public Item{
 private:
     string name;
     int damage;

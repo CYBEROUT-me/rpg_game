@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include "inventory.h"
+#include "item.h"
 #include <algorithm>
 #include <limits>
 #include <algorithm>
@@ -18,11 +18,11 @@ protected:
     int health;
     int max_health;
     int damage;
-    Inventory* main_weapon = nullptr;
+    Item* main_weapon = nullptr;
     int main_weapon_pos;
-    Inventory* main_armour = nullptr;
+    Item* main_armour = nullptr;
     int main_armour_pos;
-    unordered_map<int, Inventory*> inv;
+    unordered_map<int, Item*> inv;
     unordered_map<string, int> effects;
 public:
     Person(string p_race, int p_health, int p_damage);
@@ -30,14 +30,14 @@ public:
     virtual string getName();
     bool isAlive();
     virtual double getHealth();
-    virtual void giveItem(Inventory &item);
+    virtual void giveItem(Item &item);
     virtual void printINV();
     virtual void choose_item(int n);
-    virtual int attack(Person& target);
+    virtual int attack(Person* target);
     virtual int loseHP(int income_damage);
     virtual void getEffects(string key, int value);
     virtual vector<string> checkEffect();
-    virtual void yourTurn(Person& target);
+    virtual void yourTurn(Person* target);
     virtual void restoreHP(int HP);
 };
 

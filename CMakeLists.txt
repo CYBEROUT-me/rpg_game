@@ -3,4 +3,4 @@ project(rpg)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(rpg main.cpp weapon.h weapon.cpp armour.cpp inventory.cpp Person.cpp Person.h)
+add_executable(rpg main.cpp weapon.h weapon.cpp armour.cpp item.cpp Person.cpp Person.h)
